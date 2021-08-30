@@ -12,6 +12,12 @@ import { defineConfig } from "vite";
 import packageJson from "./package.json";
 
 export default async function ({ mode }) {
+
+    function isElectron(){
+        if (typeof navigator !== "undefined" && navigator.userAgent.toString().includes("Electron")) return true;
+        return false;
+    }
+
     const isProduction = mode === "production";
 
     const lastCommit = await new Promise((resolve, reject) =>
@@ -36,6 +42,7 @@ export default async function ({ mode }) {
     ];
 
     return defineConfig({
+        base: process.env.ELECTRON == "true" ? "./" : ".",
         plugins: [
             html({
                 inject: {
@@ -66,6 +73,7 @@ export default async function ({ mode }) {
             __APP_LAST_COMMIT_SHORT_HASH__: JSON.stringify(
                 lastCommit.shortHash
             ),
+            __IS_ELECTRON__: isElectron()
         },
         build: {
             outDir: "dist/web",

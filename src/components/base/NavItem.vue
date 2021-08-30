@@ -52,6 +52,7 @@ export default defineComponent({
     highlightActive: { type: Boolean, default: true },
   },
   setup(props) {
+
     const lg = useMediaQuery("(min-width: 1024px)");
     const isMouseOver = ref(false);
 

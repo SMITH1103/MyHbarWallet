@@ -102,7 +102,6 @@ export default defineComponent({
 
     function changeFilter(filter: string){
       state.filter = filter;
-      console.log(`From History: ${state.filter}`);
     }
     
     return {

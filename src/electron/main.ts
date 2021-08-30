@@ -40,9 +40,9 @@ function createMainWindow() {
   });
 
   if (app.isPackaged) {
-    win.loadFile("dist/index.html");
+    win.loadFile("dist/electron/index.html");
   } else {
-    win.loadURL("http://localhost:3000#wallet/new");
+    win.loadURL("http://localhost:3000/");
   }
 }
 

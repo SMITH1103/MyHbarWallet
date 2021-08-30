@@ -3,7 +3,7 @@
     class="z-10 hidden px-5 py-4 bg-white shadow-lg dark:bg-black lg:block"
   >
     <div
-      class="container flex items-center justify-start flex-1 px-5 mx-auto  xl:max-w-screen-xl"
+      class="container flex items-center justify-start flex-1 px-5 mx-auto xl:max-w-screen-xl"
     >
       <HeaderLogo
         :light="mhwLogoLight"
@@ -15,7 +15,7 @@
         <div class="flex">
           <div class="flex">
             <div
-              class="self-center h-8 ml-6 transform border-l  border-cerebral-grey"
+              class="self-center h-8 ml-6 transform border-l border-cerebral-grey"
             />
 
             <NetworkSelector class="mx-2 w-[300px]" />
@@ -30,7 +30,7 @@
   </nav>
 
   <MobileHeader
-    class="sticky top-0 z-10 bg-white shadow  dark:bg-ruined-smores lg:hidden min-w-[400px]"
+    class="sticky top-0 z-10 bg-white shadow dark:bg-ruined-smores lg:hidden min-w-[400px]"
   >
     <div
       :class="[
@@ -39,13 +39,13 @@
       ]"
     >
       <Image
-        class="invisible my-5 ml-16 mr-5  lg:visible lg:ml-5 lg:mr-6 lg:h-12"
+        class="invisible my-5 ml-16 mr-5 lg:visible lg:ml-5 lg:mr-6 lg:h-12"
         :light="mhwLogoLight"
         :dark="mhwLogoDark"
       />
 
       <div
-        class="flex border-t border-b  h-14 border-jupiter dark:border-midnight-express"
+        class="flex border-t border-b h-14 border-jupiter dark:border-midnight-express"
       >
         <NetworkSelector
           full-width
@@ -63,13 +63,15 @@
 
         <NavItem
           :text="$t('MarketingHeader.about')"
-          href="/#about"
+          to="/#about"
+          href="a"
           :highlight-active="false"
         />
 
         <NavItem
           :text="$t('MarketingHeader.faqs')"
-          href="/#faqs"
+          to="/#faqs"
+          href="a"
           :highlight-active="false"
         />
 
@@ -95,7 +97,7 @@
         <router-link
           v-t="'MarketingHeader.createWallet'"
           to="/create"
-          class="inline-block px-5 py-3 font-semibold text-white transition-colors outline-none  bg-mountain-meadow rounded-3xl hover:bg-opacity-90 focus-visible:ring-2 focus-visible:ring-mountain-meadow focus-visible:ring-offset-2"
+          class="inline-block px-5 py-3 font-semibold text-white transition-colors outline-none bg-mountain-meadow rounded-3xl hover:bg-opacity-90 focus-visible:ring-2 focus-visible:ring-mountain-meadow focus-visible:ring-offset-2"
         />
       </div>
     </div>
@@ -114,6 +116,8 @@ import NavItem from "../base/NavItem.vue";
 import Image from "../base/Image.vue";
 import HeaderLogo from "../marketing/HeaderLogo.vue";
 
+declare const __IS_ELECTRON__: boolean;
+
 export default defineComponent({
   name: "MarketingNav",
   components: {
@@ -125,6 +129,10 @@ export default defineComponent({
     NetworkSelector,
   },
   setup() {
+
+    console.log(__IS_ELECTRON__);
+    console.log(navigator.userAgent.toString());
+
     const state = reactive({
       menuOpen: false,
     });

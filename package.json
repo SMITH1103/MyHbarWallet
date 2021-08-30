@@ -20,8 +20,37 @@
     "postinstall": "husky install",
     "check:types": "run-s check:types:src check:types:tests:cypress",
     "check:types:src": "vue-tsc",
-    "check:types:tests:cypress": "tsc -p tests/cypress"
+    "check:types:tests:cypress": "tsc -p tests/cypress",
+    "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "vue-tsc --noEmit && cross-env ELECTRON=true vite build"
   },
+  "build": {
+    "appId": "MHW.test",
+    "productName": "MyHbarWallet",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "category": "Utilities"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "index.html"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist/electron"
+    },
+    "extends": null
+  },
+
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -89,6 +118,8 @@
     "vite-plugin-pwa": "^0.8.2",
     "vue-tsc": "^0.2.0",
     "workbox-window": "^6.1.5",
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "electron-builder": "^22.11.7",
+    "ts-node": "^10.2.1"
   }
 }
