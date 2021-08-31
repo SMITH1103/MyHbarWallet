@@ -11,7 +11,8 @@
         "package.json",
         "electron/**/*",
         "dist/**/*",
-        "node_modules"
+        "node_modules",
+        "index.html"
     ],
 
     "dmg": {
